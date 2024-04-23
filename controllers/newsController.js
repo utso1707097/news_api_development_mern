@@ -4,7 +4,10 @@ import { newsSchema } from "../validations/newsValidation.js";
 import vine, { errors } from "@vinejs/vine";
 
 class NewsController {
-  static async index(req, res) {}
+  static async index(req, res) {
+    const news = await prisma.news.findMany({});
+    return res.json({ status: 200, news });
+  }
 
   static async store(req, res) {
     try {
